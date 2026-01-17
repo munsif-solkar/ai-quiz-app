@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from core.config import PSQL_PASSWORD
 from urllib.parse import quote_plus
 
-DB_URL = f'postgresql://postgres:{quote_plus(PSQL_PASSWORD)}@localhost:5432/seadiary'
+DB_URL = f'postgresql://postgres:{quote_plus(PSQL_PASSWORD)}@localhost:5432/aiquizapp'
 
 engine = create_engine(DB_URL)
 
