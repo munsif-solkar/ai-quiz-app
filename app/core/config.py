@@ -5,7 +5,7 @@ from pydantic_settings import BaseSettings
 
 load_dotenv()
 
-GROK_API_KEY = os.getenv("GROK_API_KEY")
+GROQ_API_KEY = os.getenv("GROK_API_KEY")
 PSQL_PASSWORD = os.getenv("PSQL_PASSWORD")
 
 class JwtConfig(BaseSettings):
