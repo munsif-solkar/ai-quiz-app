@@ -15,7 +15,10 @@ def gen_quiz_node(state: State):
             SystemMessage(content="You are a quiz creator who generates quiz based on user topic each with a structure of question, 4 options, correct_answer, short_explnation"),
             HumanMessage(content=prompt)
         ])
+        
+       
         return {"quiz_json":response.model_dump()}
     except Exception as e:
-        return {"error":str(e)}
+        return {"error":"Something went wrong, try again!"}
+    
 

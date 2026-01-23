@@ -1,6 +1,6 @@
-from langgraph.graph import StateGraph
+from typing import TypedDict
 
-class State(StateGraph):
+class State(TypedDict):
     topic: str
     quiz_json: dict
     error: str | None
