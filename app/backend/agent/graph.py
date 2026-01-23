@@ -19,14 +19,15 @@ workflow.add_edge("generate","validate")
 workflow.set_entry_point("generate")
 workflow.set_finish_point("validate")
 
-agent = workflow.compile()
-
-initial_state = create_state()
-initial_state['topic'] = "Fundamentels of data science in python"
+quiz_agent = workflow.compile()
 
 
-res = agent.invoke(initial_state)
-print(res)
 
+def InvokeQuizAgent(topic:str,intensity:str):
+    initial_state = create_state()
+    initial_state['topic'] = topic.capitalize()
+    initial_state['intensity'] = intensity.lower()
+    response = quiz_agent.invoke(initial_state)
+    return response
 
 
