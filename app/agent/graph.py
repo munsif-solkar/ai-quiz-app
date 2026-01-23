@@ -8,7 +8,8 @@ def create_state() -> State:
     return {
         "topic":None,
         "quiz_json": None,
-        "error":None
+        "error":None,
+        "intensity": "easy"
     }
 
 workflow = StateGraph(State)

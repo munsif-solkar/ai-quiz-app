@@ -9,7 +9,9 @@ llm = ChatGroq(model="llama-3.3-70b-versatile")
 structured_llm = llm.with_structured_output(Quiz)
 
 def gen_quiz_node(state: State):
-    prompt = f"Generate a 10 question multiple choice quiz about {state["topic"]}"
+    topic = state["topic"]
+    intensity = state["intensity"]
+    prompt = f"Generate a 10 question multiple choice quiz about {topic} with the intensity of {intensity}"
     try:
         response = structured_llm.invoke([
             SystemMessage(content="You are a quiz creator who generates quiz based on user topic each with a structure of question, 4 options, correct_answer, short_explnation"),
