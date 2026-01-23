@@ -1,7 +1,7 @@
 from langgraph.graph import StateGraph, START, END
-from app.agent.nodes.generate_quiz import gen_quiz_node
-from app.agent.nodes.validate_quiz import validate_quiz_node
-from app.agent.state import State
+from agent.nodes.generate_quiz import gen_quiz_node
+from agent.nodes.validate_quiz import validate_quiz_node
+from agent.state import State
 
 
 def create_state() -> State:

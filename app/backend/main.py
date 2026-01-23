@@ -1,8 +1,12 @@
 from fastapi import FastAPI, status
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from routers.GenerateQuizRoute import router as GenereateQuizRouter
 
-app = FastAPI()
+app = FastAPI(
+    title="Ai Quiz Generator",
+    version="1.0.0"
+)
 
 origins = [
     "http://localhost.tiangolo.com",
@@ -19,3 +23,5 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+app.include_router(GenereateQuizRouter)

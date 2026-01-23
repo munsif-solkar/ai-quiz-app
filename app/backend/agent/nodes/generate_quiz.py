@@ -1,8 +1,8 @@
 from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, SystemMessage
-from app.schemas.quiz_schema import Quiz
-from app.agent.state import State
-from app.core.config import GROQ_API_KEY
+from schemas.quiz_schema import Quiz
+from agent.state import State
+from core.config import GROQ_API_KEY
 
 llm = ChatGroq(model="llama-3.3-70b-versatile")
 

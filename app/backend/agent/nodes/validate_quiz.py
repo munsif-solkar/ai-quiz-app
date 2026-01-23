@@ -1,4 +1,4 @@
-from app.agent.state import State
+from agent.state import State
 
 def validate_quiz_node(state: State):
     quiz = state['quiz_json']
