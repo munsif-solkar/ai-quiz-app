@@ -1,6 +1,7 @@
-from pydantic import BaseModel,Field
-from schemas.constants import IntensityType
+from pydantic import BaseModel
+from schemas.constants import IntensityType,QuizLengthConstraints,QuizTopicConstraints
 
 class user_query(BaseModel):
-    topic: str = Field(max_length=150,min_length=10)
+    topic: str = QuizTopicConstraints
     intensity: IntensityType
+    length: int = QuizLengthConstraints

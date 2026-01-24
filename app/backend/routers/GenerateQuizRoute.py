@@ -9,7 +9,7 @@ router = APIRouter()
 @router.post('/generate-quiz',response_model=Quiz)
 async def generateQuiz(query: user_query):
     try:
-        agent_output = InvokeQuizAgent(query.topic,query.intensity)
+        agent_output = InvokeQuizAgent(query)
         quiz_json = agent_output["quiz_json"]
         if not quiz_json:
             return HTTPException(status_code=500,detail="Unable to generate quiz!")

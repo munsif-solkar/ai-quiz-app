@@ -1,11 +1,12 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from typing import List
 from schemas.question_schema import Question
-from schemas.constants import IntensityType
+from schemas.constants import IntensityType,QuizLengthConstraints,QuizIntensityConstraints,QuizTopicConstraints
 
 class Quiz(BaseModel):
-    topic: str
-    intensity: IntensityType = Field(description="Intensity of quiz easy,medium or hard")
+    topic: str = QuizTopicConstraints
+    intensity: IntensityType = QuizIntensityConstraints
+    length: int = QuizLengthConstraints
     questions: List[Question]
 
     
