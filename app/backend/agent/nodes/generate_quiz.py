@@ -12,6 +12,8 @@ def gen_quiz_node(state: State):
     topic = state["topic"]
     intensity = state["intensity"]
     length = state["length"]
+    if not topic:
+        raise ValueError("Topic not provided.")
     prompt = f"Generate a {length} question multiple choice quiz about {topic} with the intensity of {intensity}"
     try:
         response = structured_llm.invoke([

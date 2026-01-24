@@ -10,6 +10,7 @@ def create_state() -> State:
         "topic":None,
         "quiz_json": None,
         "error":None,
+        "length":5,
         "intensity": "easy"
     }
 
