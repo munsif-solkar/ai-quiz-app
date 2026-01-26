@@ -3,7 +3,7 @@ from pydantic import Field
 
 IntensityType = Literal['easy','medium','hard']
 
-QuizLengthConstraints = Field(min=5,max=20)
+QuizLengthConstraints = Field(ge=5,le=20)
 
 QuizTopicConstraints = Field(max_length=150,min_length=10)
 

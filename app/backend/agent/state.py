@@ -1,4 +1,4 @@
-from typing import TypedDict,Literal
+from typing import TypedDict
 from schemas.constants import IntensityType
 
 class State(TypedDict):

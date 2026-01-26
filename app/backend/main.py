@@ -1,5 +1,7 @@
-from fastapi import FastAPI, status
+from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 from routers.GenerateQuizRoute import router as GenereateQuizRouter
 
@@ -23,5 +25,17 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request,exc: RequestValidationError):
+    for error in exc.errors():
+        error["message"] = error.pop('msg')
+    
+    return JSONResponse(
+        status_code=422,
+        content=jsonable_encoder({
+            "detail":exc.errors(),
+        })
+    )
 
 app.include_router(GenereateQuizRouter)

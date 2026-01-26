@@ -3,7 +3,7 @@ from agent.nodes.generate_quiz import gen_quiz_node
 from agent.nodes.validate_quiz import validate_quiz_node
 from agent.state import State
 from schemas.user_query import user_query
-
+from fastapi import HTTPException
 
 def create_state() -> State:
     return {
@@ -32,5 +32,6 @@ def InvokeQuizAgent(query: user_query):
     initial_state["length"] = str(query.length)
     response = quiz_agent.invoke(initial_state)
     return response
+    
 
 
