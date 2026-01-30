@@ -15,5 +15,5 @@ export const Button: React.FC<ButtonProps> = ({
     secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
   }
 
-  return <button className={`${base} ${variants[variant]} ${className}`} {...props} />
+  return <button className={`${base} ${variants[variant]} ${className}`} {...props}/>
 }

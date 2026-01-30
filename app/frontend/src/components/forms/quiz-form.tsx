@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { RadioGroup } from "../ui/radio";
+import type {Query} from "./querySchema";
 
-const QuizForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
+const QuizForm = ({ onSubmit }: { onSubmit: (data: Query) => void }) => {
 
 const Intensityoptions = [
     { id: "easy", label: "Easy", value: "easy" },
@@ -17,13 +18,13 @@ const Intensityoptions = [
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ topic, intensity, questionsCount });
+    onSubmit({ topic, intensity, 'length': questionsCount });
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-md mx-auto mt-10 p-6 bg-white rounded-2xl shadow-md"
+      className="max-w-md mx-auto p-6 bg-white"
     >
       <h2 className="text-2xl font-semibold mb-4 text-center text-gray-800">
         Generate Quiz

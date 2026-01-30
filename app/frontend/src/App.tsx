@@ -4,12 +4,12 @@ function App() {
 
 
   return (
-    <>
+    <div className="bg-[#EAEFEF]">
     <MainLayout>
       
 <Dashboard/>
     </MainLayout>
-    </>
+    </div>
   )
 }
 

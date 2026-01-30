@@ -6,9 +6,9 @@ export default function TwoPanelLayout({
   right: React.ReactNode
 }) {
   return (
-    <div className="flex gap-6 ">
-      <div className="w-1/3 bg-gray-50 p-4 rounded shadow">{left}</div>
-      <div className="flex-1 bg-white p-4 rounded shadow">{right}</div>
+    <div className="flex w-screen justify-center">
+      <div className="w-1/2 bg-gray-50 ">{left}</div>
+      <div className="w-full bg-white p-5 ">{right}</div>
     </div>
   )
 }
