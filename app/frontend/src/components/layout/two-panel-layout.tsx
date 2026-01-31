@@ -8,7 +8,7 @@ export default function TwoPanelLayout({
   return (
     <div className="flex w-screen justify-center">
       <div className="w-1/2 bg-gray-50 ">{left}</div>
-      <div className="w-full bg-white p-5 ">{right}</div>
+      <div className="w-full bg-white p-5 border border-l-slate-500 border-dashed border-spacing-4">{right}</div>
     </div>
   )
 }

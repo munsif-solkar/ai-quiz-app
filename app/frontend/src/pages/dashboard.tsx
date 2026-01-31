@@ -34,7 +34,7 @@ export default function Dashboard() {
     <TwoPanelLayout
       left={<QuizForm onSubmit={handleSubmit} />}
       right={
-        <div>
+        <div className="">
           {loading ? "Generating quiz..." : results ? <QuizRenderer quiz={results} /> : "No quiz yet"}
         </div>
       }
