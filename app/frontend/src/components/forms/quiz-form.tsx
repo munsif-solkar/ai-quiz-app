@@ -51,11 +51,11 @@ const Intensityoptions = [
 
       {/* Questions Count */}
       <label className="block mb-5">
-        <span className="text-sm font-medium text-gray-700">Number of Questions</span>
+        <span className="text-sm font-medium text-gray-700">Number of Questions (Max:20)</span>
         <input
           type="number"
           min={1}
-          max={50}
+          max={20}
           value={questionsCount}
           onChange={(e) => setQuestionsCount(Number(e.target.value))}
           className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:border-blue-400"

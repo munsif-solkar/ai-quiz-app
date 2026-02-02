@@ -1,10 +1,11 @@
 interface OptionItemProps {
   text: string
   isCorrect?: boolean
-  index: number
+  QuestionIndex: number,
+  OptionIndex: number
 }
 
-export default function OptionItem({ text, isCorrect = false, index }: OptionItemProps) {
+export default function OptionItem({ text, isCorrect = false, QuestionIndex, OptionIndex }: OptionItemProps) {
   return (
     <li>
       <label
@@ -14,7 +15,7 @@ export default function OptionItem({ text, isCorrect = false, index }: OptionIte
         `}
       >
 
-        <input type="radio" name={"question-" + index + 1} value={index} className="" />
+        <input type="radio" name={"question-" + QuestionIndex + 1} value={OptionIndex + 1} className="" required/>
         <p className="">{text}</p>
 
 

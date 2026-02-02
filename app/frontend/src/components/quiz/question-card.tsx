@@ -14,6 +14,8 @@ export default function QuestionCard({ question, index }: QuestionCardProps) {
         {index + 1}. {question.question}
       </p>
 
+      
+
       <ul className="mt-2 space-y-1">
 
         
@@ -22,7 +24,7 @@ export default function QuestionCard({ question, index }: QuestionCardProps) {
           
 
           
-    <OptionItem key={i} text={opt} index={index}></OptionItem>
+    <OptionItem key={i} text={opt} QuestionIndex={index} OptionIndex={i}></OptionItem>
        
           
         ))}

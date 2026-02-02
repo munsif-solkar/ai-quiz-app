@@ -5,10 +5,13 @@ import QuestionCard from "./question-card"
 export default function QuizRenderer({ quiz }: { quiz: Quiz }) {
   return (
     <div className="space-y-6">
+      <form name="quiz-solve">
       <QuizHeader quiz={quiz} />
+      
       {quiz.questions.map((q, i) => (
         <QuestionCard key={i} question={q} index={i} />
       ))}
+      </form>
     </div>
   )
 }

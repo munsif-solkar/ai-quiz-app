@@ -5,9 +5,10 @@ import { generateQuiz } from "../services/fetchQuiz"
 import type { Query } from "../components/forms/querySchema"
 import type { Quiz } from "../types/quiz"
 import QuizRenderer from "../components/quiz/quiz-renderer"
+import { Loading } from "../components/ui/Loading"
 
 export default function Dashboard() {
-  const [results, setResults] = useState<Quiz>()
+  const [results, setResults] = useState<Quiz | null>(null)
   const [recentQuery, setRecentQuery] = useState({})
   const [loading, setLoading] = useState(false)
 
@@ -35,7 +36,7 @@ export default function Dashboard() {
       left={<QuizForm onSubmit={handleSubmit} />}
       right={
         <div className="">
-          {loading ? "Generating quiz..." : results ? <QuizRenderer quiz={results} /> : "No quiz yet"}
+          {loading ? <Loading text='Generating your quiz...'/> : results && <QuizRenderer quiz={results} />}
         </div>
       }
     />
