@@ -7,6 +7,8 @@ import type { Quiz } from "../types/quiz"
 import QuizRenderer from "../components/quiz/quiz-renderer"
 import { Loading } from "../components/ui/Loading"
 
+
+
 export default function Dashboard() {
   const [results, setResults] = useState<Quiz | null>(null)
   const [recentQuery, setRecentQuery] = useState({})
@@ -15,7 +17,7 @@ export default function Dashboard() {
   const handleSubmit = async (query: Query) => {
     const queryString = JSON.stringify(query).toLowerCase().trim()
     const recentQueryString = JSON.stringify(recentQuery).toLowerCase().trim()
-    console.log(queryString,recentQueryString)
+
     if (queryString != recentQueryString) {
       try {
         setLoading(true)
@@ -35,10 +37,22 @@ export default function Dashboard() {
     <TwoPanelLayout
       left={<QuizForm onSubmit={handleSubmit} />}
       right={
-        <div className="">
+        <div className="bg-white p-6 rounded-3xl border-2 border-black">
           {loading ? <Loading text='Generating your quiz...'/> : results && <QuizRenderer quiz={results} />}
+          { !results && !loading && <QuizIntro/> }
         </div>
       }
     />
   )
 }
+
+function QuizIntro(){
+  return (
+  <>
+    <div className="flex items-center justify-center">
+<h1 className="font-bold uppercase leading-normal text-3xl text-gray-500">Generate quiz over any topic to test your skills</h1>
+    </div>
+  </>
+  )
+}
+

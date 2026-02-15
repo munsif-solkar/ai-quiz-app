@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 interface OptionItemProps {
   text: string
   isCorrect?: boolean
@@ -6,6 +8,12 @@ interface OptionItemProps {
 }
 
 export default function OptionItem({ text, isCorrect = false, QuestionIndex, OptionIndex }: OptionItemProps) {
+  const question_index = QuestionIndex + 1
+  const option_index = OptionIndex + 1
+
+
+  const [selectedOptions,setSelectedOption] = useState<any>([])
+  
   return (
     <li>
       <label
@@ -15,7 +23,7 @@ export default function OptionItem({ text, isCorrect = false, QuestionIndex, Opt
         `}
       >
 
-        <input type="radio" name={"question-" + QuestionIndex + 1} value={OptionIndex + 1} className="" required/>
+        <input type="radio" name={"question-" + question_index } value={option_index} className="quiz-input" required onChange={(e)=>{selectedOptions[QuestionIndex] = e.target.value}}/>
         <p className="">{text}</p>
 
 

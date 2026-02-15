@@ -1,11 +1,16 @@
 import type { Quiz } from "../..//types/quiz"
 import QuizHeader from "./quiz-header"
 import QuestionCard from "./question-card"
+import { checkScore } from "../../services/quz-score-checker"
+import { useState } from "react"
 
 export default function QuizRenderer({ quiz }: { quiz: Quiz }) {
+
+ 
+
   return (
     <div className="space-y-6">
-      <form name="quiz-solve">
+      <form name="quiz-solve" onSubmit={checkScore}>
       <QuizHeader quiz={quiz} />
       
       {quiz.questions.map((q, i) => (

@@ -24,7 +24,7 @@ export default function QuizHeader({ quiz }: QuizHeaderProps) {
       </div>
       <Button
         type="submit"
-        className=" bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold transition w-max h-max"
+        className="bg-green-700 hover:bg-blue-600 text-white rounded-lg font-semibold transition w-max h-max"
       >
         Check Score
       </Button>

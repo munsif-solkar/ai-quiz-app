@@ -24,7 +24,7 @@ const Intensityoptions = [
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-md mx-auto p-6 bg-white"
+      className="max-w-md mx-auto p-6 bg-white border-black border-2 rounded-3xl"
     >
       <h2 className="text-2xl font-semibold mb-4 text-center text-gray-800">
         Generate Quiz
@@ -65,7 +65,7 @@ const Intensityoptions = [
       {/* Submit Button */}
       <Button
         type="submit"
-        className="w-full py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold transition"
+        className="w-full py-2 bg-white hover:bg-black hover:text-white border-2 border-black text-black rounded-lg font-semibold transition"
       >
         Generate Quiz
       </Button>

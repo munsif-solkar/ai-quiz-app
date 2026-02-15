@@ -6,10 +6,10 @@ export default function TwoPanelLayout({
   right: React.ReactNode
 }) {
   return (
-    <div className="flex w-screen justify-center">
+    <div className="flex w-full justify-around m-5 ">
       
-      <div className="w-1/2 ">{left}</div>
-      <div className="w-full bg-white p-5 border border-l-gray-300 border-dashed ">{right}</div>
+      <div className="">{left}</div>
+      <div className="w-[800px]">{right}</div>
       
     </div>
   )
