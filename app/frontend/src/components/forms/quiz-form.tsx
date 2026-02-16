@@ -65,8 +65,8 @@ const Intensityoptions = [
       {/* Submit Button */}
       <Button
         type="submit"
-        
-        className="w-full py-2 bg-white hover:bg-black hover:text-white border-2 border-black text-black rounded-lg font-semibold transition"
+        variant="secondary"
+        className="w-full"
       >
         Generate Quiz
       </Button>
