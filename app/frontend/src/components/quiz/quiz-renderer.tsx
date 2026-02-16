@@ -2,7 +2,7 @@ import type { Quiz } from "../..//types/quiz"
 import QuizHeader from "./quiz-header"
 import QuestionCard from "./question-card"
 import { checkScore } from "../../services/quz-score-checker"
-import { useState } from "react"
+
 
 export default function QuizRenderer({ quiz }: { quiz: Quiz }) {
 
