@@ -66,7 +66,7 @@ const Intensityoptions = [
       <Button
         type="submit"
         
-        className="w-full py-2 bg-white hover:bg-[#000000] hover:text-white border-2 border-black text-[#000000] rounded-lg font-semibold transition"
+        className="w-full py-2 bg-white hover:bg-black hover:text-white border-2 border-black text-black rounded-lg font-semibold transition"
       >
         Generate Quiz
       </Button>
