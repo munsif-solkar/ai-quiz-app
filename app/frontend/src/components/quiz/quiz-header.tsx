@@ -15,7 +15,7 @@ export default function QuizHeader({ quiz }: QuizHeaderProps) {
   return (
     <div className="mb-6 items-center flex justify-between flex-row">
       <div className="space-y-2">
-      <h2 className="text-2xl font-bold">{quiz.topic}</h2>
+      <h2 className="text-2xl font-bold">{quiz.topic} - {quiz.quiz_id}</h2>
       <p className="text-sm text-gray-500 space-x-3">
         <span className="bg-[#435663] rounded-md py-1 px-2 text-white">Questions: {quiz.length}</span>
 
