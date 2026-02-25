@@ -1,6 +1,6 @@
 import type { Question } from "../../types/quiz"
 import OptionItem from "./option-item"
-import { correct_options } from "../../services/quz-score-checker"
+
 
 interface QuestionCardProps {
   question: Question
@@ -8,7 +8,7 @@ interface QuestionCardProps {
 }
 
 export default function QuestionCard({ question, index }: QuestionCardProps) {
-  correct_options.push(question.correct_answer)
+
   return (
     <div className="p-3 border rounded-lg shadow-sm mb-4 question" data-correct-option={question.correct_answer}>
       <p className="font-semibold">

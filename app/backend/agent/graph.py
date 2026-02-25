@@ -44,7 +44,7 @@ quiz_agent = workflow.compile(checkpointer=memory_saver)
 
 
 
-def InvokeQuizAgent(query: user_query):
+async def InvokeQuizAgent(query: user_query):
     quiz_id = str(uuid.uuid4())
     print("quiz id",quiz_id)
     print(query)
@@ -55,14 +55,14 @@ def InvokeQuizAgent(query: user_query):
     initial_state["quiz_id"] = quiz_id 
 
     config = {"configurable":{"thread_id":quiz_id}}
-    response = quiz_agent.invoke(initial_state,config=config)
+    response = await quiz_agent.ainvoke(initial_state,config=config)
     print('eternal resp',response)
     return response
 
 
 
   
-def EvaluateQuizAgent(solved_quiz: solved_quiz_query):
+async def EvaluateQuizAgent(solved_quiz: solved_quiz_query):
 
     quiz_id = solved_quiz.quiz_id
     quiz_answers = solved_quiz.quiz_answers
@@ -73,7 +73,7 @@ def EvaluateQuizAgent(solved_quiz: solved_quiz_query):
         "quiz_solved":True
     }
     config = {"configurable":{"thread_id":quiz_id}}
-    response = quiz_agent.invoke(partial_state,config=config)
+    response = await quiz_agent.ainvoke(partial_state,config=config)
 
     return response
 

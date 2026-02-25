@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 from routers.GenerateQuizRoute import router as GenereateQuizRouter
+from routers.EvaluateQuizRoute import router as QuizEvaluationRouter
 
 app = FastAPI(
     title="Ai Quiz Generator",
@@ -39,3 +40,4 @@ async def validation_exception_handler(request: Request,exc: RequestValidationEr
     )
 
 app.include_router(GenereateQuizRouter)
+app.include_router(QuizEvaluationRouter)

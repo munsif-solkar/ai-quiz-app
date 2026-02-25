@@ -9,7 +9,7 @@ router = APIRouter()
 @router.post('/generate-quiz',response_model=Quiz)
 async def generateQuiz(query: user_query):
     try:
-        agent_output = InvokeQuizAgent(query)
+        agent_output = await InvokeQuizAgent(query)
         quiz_json = agent_output["quiz_json"]
         if not quiz_json:
             return HTTPException(status_code=500,detail="Unable to generate quiz!")
@@ -18,3 +18,7 @@ async def generateQuiz(query: user_query):
                             content=quiz_response.model_dump())
     except:
         HTTPException(status_code=500,detail="Something went wrong")
+
+@router.get("/health")
+async def health_check():
+    return JSONResponse(status_code=200, content={"status": "ok", "message": "Server is running"})

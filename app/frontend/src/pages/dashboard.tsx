@@ -6,15 +6,19 @@ import type { Query } from "../components/forms/querySchema"
 import type { Quiz } from "../types/quiz"
 import QuizRenderer from "../components/quiz/quiz-renderer"
 import { Loading } from "../components/ui/Loading"
+import { useNavigate } from "react-router-dom";
+
 
 
 
 export default function Dashboard() {
+ const navigate = useNavigate(); 
   const [results, setResults] = useState<Quiz | null>(null)
   const [recentQuery, setRecentQuery] = useState({})
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (query: Query) => {
+     
     const queryString = JSON.stringify(query).toLowerCase().trim()
     const recentQueryString = JSON.stringify(recentQuery).toLowerCase().trim()
 
@@ -22,11 +26,17 @@ export default function Dashboard() {
       try {
         setLoading(true)
         const data = await generateQuiz(query)
+        
         setResults(data)
         setRecentQuery(query)
+
+        navigate(`/quiz/${data.quiz_id}`)
+
       } catch (err) {
         console.error(err)
       } finally {
+       
+        
         setLoading(false)
       }
     }

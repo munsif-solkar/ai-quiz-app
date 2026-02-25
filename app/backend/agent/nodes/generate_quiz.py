@@ -11,7 +11,7 @@ structured_llm = llm.with_structured_output(Quiz)
 
     
 
-def gen_quiz_node(state: State):
+async def gen_quiz_node(state: State):
 
     quiz_solved = state['quiz_solved']
     if quiz_solved:
@@ -24,7 +24,7 @@ def gen_quiz_node(state: State):
         raise ValueError("Topic not provided.")
     prompt = f"Generate a {length} question multiple choice quiz about {topic} with the intensity of {intensity}"
     try:
-        response = structured_llm.invoke([
+        response = await structured_llm.ainvoke([
             SystemMessage(content="You are a quiz creator who generates quiz based on user topic each with a structure of question, 4 options, correct_answer, short_explnation"),
             HumanMessage(content=prompt)
         ],timeout=10)
