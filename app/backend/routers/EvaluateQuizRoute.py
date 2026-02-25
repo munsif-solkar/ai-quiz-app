@@ -6,7 +6,7 @@ from agent.graph import EvaluateQuizAgent
 
 router = APIRouter()
 
-@router.post('/generate-quiz',response_model=quiz_evaluation)
+@router.post('/evaluate-quiz',response_model=quiz_evaluation)
 async def generateQuiz(solved_quiz: solved_quiz_query):
     try:
         agent_output = await EvaluateQuizAgent(solved_quiz)
