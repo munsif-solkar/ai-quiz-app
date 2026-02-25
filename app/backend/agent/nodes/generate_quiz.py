@@ -19,7 +19,7 @@ async def gen_quiz_node(state: State):
     topic = state["topic"]
     intensity = state["intensity"]
     length = state["length"]
-    print('quiz id from state',state['quiz_id'])
+
     if not topic:
         raise ValueError("Topic not provided.")
     prompt = f"Generate a {length} question multiple choice quiz about {topic} with the intensity of {intensity}"

@@ -4,7 +4,7 @@ import { formToJSON } from "axios"
 
 
 export const checkScore = (e:React.FormEvent)=>{
-   const solved_quiz = []
+   const solved_quiz: any = []
    e.preventDefault()
    const form = e.target as HTMLFormElement
    const formData = new FormData(form);
@@ -18,6 +18,6 @@ export const checkScore = (e:React.FormEvent)=>{
       })
     })
 
-    
+    console.log(solved_quiz)
 
 }

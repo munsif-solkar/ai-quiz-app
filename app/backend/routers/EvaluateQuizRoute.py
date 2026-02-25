@@ -7,15 +7,16 @@ from agent.graph import EvaluateQuizAgent
 router = APIRouter()
 
 @router.post('/evaluate-quiz',response_model=quiz_evaluation)
-async def generateQuiz(solved_quiz: solved_quiz_query):
+async def evaluateQuiz(solved_quiz: solved_quiz_query):
     try:
+        
         agent_output = await EvaluateQuizAgent(solved_quiz)
         quiz_reults = agent_output["quiz_evaluation"]
         if not quiz_reults:
             return HTTPException(status_code=500,detail="Unable to generate quiz!")
         evaluation_response = quiz_evaluation(**quiz_reults)
         return JSONResponse(status_code=200,
-                            content=quiz_reults.model_dump())
+                            content=evaluation_response.model_dump())
     except:
         HTTPException(status_code=500,detail="Something went wrong")
 

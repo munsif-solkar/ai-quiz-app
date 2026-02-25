@@ -10,13 +10,13 @@ structured_llm = llm.with_structured_output(quiz_evaluation)
 
 async def evaluate_quiz(state: State):
     prompt = f"Check the quiz, User selected this options {state['quiz_answers']}"
-    print('fucking state',state)
+
     try:
         response = await structured_llm.ainvoke([
             SystemMessage(content=f"Quiz: {state['quiz_json']}"),
             HumanMessage(content=prompt)
         ],timeout=10)
-       
+        print(response)
         return {"quiz_evaluation":response.model_dump()}
     except Exception as e:
 
