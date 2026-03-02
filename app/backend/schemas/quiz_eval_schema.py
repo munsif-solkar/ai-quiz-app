@@ -6,4 +6,4 @@ class quiz_evaluation(BaseModel):
     score: float = Field('Score of quiz in percentage')
     incorrect_answers_index: List[int] = Field("Quenstion indexes for incorrect answers")
     correct_answer_index: List[int] = Field("Quenstion indexes for correct answers")
-    improvement_tips: str = Field("Improvement learning tips for user based on quiz in short")
+    improvement_tips: str = Field("Improvement learning tips for user based on quiz in brief with resources tips")

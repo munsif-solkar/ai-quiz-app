@@ -10,7 +10,7 @@ export default function QuizRenderer({ quiz }: { quiz: Quiz }) {
 
   return (
     <div className="space-y-6">
-      <form name="quiz-solve" onSubmit={checkScore}>
+      <form name="quiz-solve" onSubmit={checkScore} data-quiz-id={quiz.quiz_id}>
       <QuizHeader quiz={quiz} />
       
       {quiz.questions.map((q, i) => (
