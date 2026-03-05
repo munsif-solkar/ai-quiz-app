@@ -13,7 +13,7 @@ async def evaluate_quiz(state: State):
 
     try:
         response = await structured_llm.ainvoke([
-            SystemMessage(content=f"Quiz: {state['quiz_json']} (This is the quiz check if user selected options are correct or not)"),
+            SystemMessage(content=f"Quiz: {state['quiz_json']} (This is the quiz check if user selected options are correct compate the correct_answer value in Quiz)"),
             HumanMessage(content=prompt)
         ],timeout=10)
         print(response)
