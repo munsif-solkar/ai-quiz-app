@@ -25,6 +25,7 @@ export const checkScore = async (e: React.FormEvent) => {
     quiz_id,
     quiz_answers: solved_quiz_options
   })
-
   console.log(results)
+
+  return results
 }

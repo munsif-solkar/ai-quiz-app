@@ -5,14 +5,15 @@ interface OptionItemProps {
   isCorrect?: boolean
   QuestionIndex: number,
   OptionIndex: number
+  correct_option: number
 }
 
-export default function OptionItem({ text, isCorrect = false, QuestionIndex, OptionIndex }: OptionItemProps) {
-  const question_index = QuestionIndex + 1
+export default function OptionItem({ text, isCorrect = false, QuestionIndex, OptionIndex ,correct_option}: OptionItemProps) {
+
   const option_index = OptionIndex + 1
 
 
-  const [selectedOptions,setSelectedOption] = useState<any>([])
+
   
   return (
     <li>
@@ -23,7 +24,7 @@ export default function OptionItem({ text, isCorrect = false, QuestionIndex, Opt
         `}
       >
 
-        <input type="radio" name={"question-" + question_index } value={option_index} className="quiz-input" required onChange={(e)=>{selectedOptions[QuestionIndex] = e.target.value}}/>
+        <input type="radio" name={"question-" + QuestionIndex } value={option_index} className="quiz-input" required/>
         <p className="">{text}</p>
 
 
