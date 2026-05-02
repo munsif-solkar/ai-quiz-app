@@ -12,7 +12,7 @@ export default function QuizRenderer({ quiz }: { quiz: Quiz }) {
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (formEvent: React.FormEvent) => {
-     
+  
       try {
         setLoading(true)
         const data = await checkScore(formEvent)
@@ -32,7 +32,7 @@ export default function QuizRenderer({ quiz }: { quiz: Quiz }) {
       {results && <QuizEvalutionBlock quizEval={results}/>}
 
       <form name="quiz-solve" onSubmit={handleSubmit} data-quiz-id={quiz.quiz_id}>
-      <QuizHeader quiz={quiz} />
+      <QuizHeader quiz={quiz} solved={results ? true : false}/>
       
       {quiz.questions.map((q, i) => (
         <QuestionCard key={i} question={q} index={i} solved={results ? true : false} incorrect_answers={results?.incorrect_answers_index || []}/>

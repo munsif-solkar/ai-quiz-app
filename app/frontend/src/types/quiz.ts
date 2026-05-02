@@ -28,6 +28,6 @@ export interface QuizEvaluation {
   topic: string
   score: number
   incorrect_answers_index: number[]
-  correct_answer_index: number[]
+  correct_answers_index: number[]
   improvement_tips: string
 }

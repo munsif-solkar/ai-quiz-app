@@ -43,7 +43,7 @@ export default function Dashboard() {
     <TwoPanelLayout
       left={<QuizForm onSubmit={handleSubmit} />}
       right={
-        <div className="bg-white p-6 rounded-3xl border-2 border-black h-[500px] overflow-y-scroll [&::]">
+        <div className="bg-white p-6 rounded-3xl border-2 border-black h-[500px] overflow-y-scroll [&::] relative">
           {loading ? <Loading text='Generating your quiz...'/> : results && <QuizRenderer quiz={results} />}
           { !results && !loading && <QuizIntro/> }
         </div>

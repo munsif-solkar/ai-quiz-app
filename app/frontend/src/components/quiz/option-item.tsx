@@ -2,17 +2,17 @@ import { useState } from "react"
 
 interface OptionItemProps {
   text: string
-  isCorrect?: boolean
   QuestionIndex: number,
-  OptionIndex: number
-  correct_option: number
+  OptionIndex: number,
+  correct_option: number,
+  solved:boolean
 }
 
-export default function OptionItem({ text, isCorrect = false, QuestionIndex, OptionIndex ,correct_option}: OptionItemProps) {
+export default function OptionItem({ text, QuestionIndex, OptionIndex ,correct_option,solved}: OptionItemProps) {
 
   const option_index = OptionIndex + 1
 
-
+  const isCorrect = option_index == correct_option;
 
   
   return (
@@ -20,7 +20,7 @@ export default function OptionItem({ text, isCorrect = false, QuestionIndex, Opt
       <label
         className={`p-2 rounded 
         flex flex-row gap-3
-        ${isCorrect ? "bg-green-100 font-medium" : "bg-gray-50"}
+        ${isCorrect && solved ? "bg-green-100 font-medium" : "bg-gray-50"}
         `}
       >
 

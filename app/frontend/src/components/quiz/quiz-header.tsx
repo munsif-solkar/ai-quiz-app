@@ -9,7 +9,12 @@ const intensityColors: Record<Quiz["intensity"], string> = {
   hard: "bg-[#AA2B1D]",
 }
 
-export default function QuizHeader({ quiz }: {quiz: Quiz}) {
+interface QuizHeaderProps {
+  quiz: Quiz;
+  solved?: boolean; // Make it optional if you have a default
+}
+
+export default function QuizHeader({ quiz, solved = false }: QuizHeaderProps) {
   return (
     <div className="mb-6 items-center flex justify-between flex-row">
       <div className="space-y-2">
@@ -20,13 +25,13 @@ export default function QuizHeader({ quiz }: {quiz: Quiz}) {
         <span className={`${intensityColors[quiz.intensity]} rounded-md py-1 px-2 text-white`}>{quiz.intensity.toUpperCase()}</span>
       </p>
       </div>
-      <Button
+      {!solved && <Button
         variant="secondary"
         type="submit"
         className=" "
       >
         Check Score
-      </Button>
+      </Button>}
     </div>
   )
 }
