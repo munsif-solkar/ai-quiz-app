@@ -12,23 +12,27 @@ structured_llm = llm.with_structured_output(Quiz)
     
 
 async def gen_quiz_node(state: State):
-
+    print("--- GENERATING QUIZ ---")
     quiz_solved = state['quiz_solved']
     if quiz_solved:
         return "evaluate"
     topic = state["topic"]
+    error = state["error"]
     intensity = state["intensity"]
     length = state["length"]
 
     if not topic:
         raise ValueError("Topic not provided.")
+    
+    if error:
+        raise ValueError(error)
+
     prompt = f"Generate a {length} question multiple choice quiz about {topic} with the intensity of {intensity}"
     try:
         response = await structured_llm.ainvoke([
             SystemMessage(content="You are a quiz creator who generates quiz based on user topic each with a structure of question, 4 options, correct_answer, short_explnation"),
             HumanMessage(content=prompt)
         ],timeout=10)
-       
         return {"quiz_json":response.model_dump()}
     except Exception as e:
         return {"error":"Something went wrong, try again!"}

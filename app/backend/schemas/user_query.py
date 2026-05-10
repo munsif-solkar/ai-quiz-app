@@ -16,3 +16,8 @@ class user_query(BaseModel):
 class solved_quiz_query(BaseModel):
     quiz_id: str
     quiz_answers: List[QuizAnswers]
+
+
+class input_validation_response(BaseModel):
+    is_valid: bool
+    error: str | None

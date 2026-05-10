@@ -9,8 +9,8 @@ router = APIRouter()
 @router.post('/evaluate-quiz',response_model=quiz_evaluation)
 async def evaluateQuiz(solved_quiz: solved_quiz_query):
     try:
-        
         agent_output = await EvaluateQuizAgent(solved_quiz)
+       
         quiz_reults = agent_output["quiz_evaluation"]
         if not quiz_reults:
             return HTTPException(status_code=500,detail="Unable to generate quiz!")

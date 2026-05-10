@@ -1,6 +1,7 @@
 from agent.state import State
 
 def quiz_router(state: State):
+    print("--- IN QUIZ ROUTER ---")
     quiz_solved = state['quiz_solved']
     if quiz_solved:
         return "evaluate"

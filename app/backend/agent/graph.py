@@ -2,7 +2,9 @@ from langgraph.graph import StateGraph, START, END
 from agent.nodes.generate_quiz import gen_quiz_node
 from agent.nodes.validate_quiz import validate_quiz_node
 from agent.nodes.evaluate_quiz import evaluate_quiz
-from agent.nodes.quiz_router import quiz_router
+from agent.nodes.validate_input import validate_input_node
+from agent.routers.quiz_router import quiz_router
+from agent.routers.post_input_validation_router import post_input_validation_router
 from agent.state import State
 from schemas.user_query import user_query,solved_quiz_query
 from langgraph.checkpoint.memory import MemorySaver
@@ -25,19 +27,31 @@ memory_saver = MemorySaver()
 
 workflow = StateGraph(State)
 
-workflow.add_node("generate",gen_quiz_node)
-workflow.add_node("validate",validate_quiz_node)
-workflow.add_node("evaluate",evaluate_quiz)
+# 1. Add all nodes
+workflow.add_node("generate", gen_quiz_node)
+workflow.add_node("validate_quiz", validate_quiz_node)
+workflow.add_node("evaluate", evaluate_quiz)
+workflow.add_node("validate_input", validate_input_node)
 
+# 2. Add Conditional Edges (Branching)
+# START routes to either validate_input or evaluate
+workflow.add_conditional_edges(
+    START, 
+    quiz_router, 
+    {"generate": "validate_input", "evaluate": "evaluate"}
+)
 
-workflow.add_edge("generate","validate")
-workflow.add_conditional_edges(START,quiz_router,{"generate":"generate","evaluate":"evaluate"})
+# validate_input routes to either generate or END
+workflow.add_conditional_edges(
+    "validate_input", 
+    post_input_validation_router, 
+    {"generate": "generate", END: END}
+)
 
-workflow.add_edge("validate",END)
-workflow.add_edge("evaluate",END)
-
-
-
+# 3. Add Standard Edges (Linear paths)
+workflow.add_edge("generate", "validate_quiz")
+workflow.add_edge("validate_quiz", END)
+workflow.add_edge("evaluate", END)
 
 
 quiz_agent = workflow.compile(checkpointer=memory_saver)
@@ -53,10 +67,9 @@ async def InvokeQuizAgent(query: user_query):
     initial_state['intensity'] = query.intensity.lower()
     initial_state["length"] = str(query.length)
     initial_state["quiz_id"] = quiz_id 
-
+  
     config = {"configurable":{"thread_id":quiz_id}}
     response = await quiz_agent.ainvoke(initial_state,config=config)
-    print('eternal resp',response)
     return response
 
 

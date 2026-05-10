@@ -9,6 +9,7 @@ llm = ChatGroq(model="llama-3.3-70b-versatile")
 structured_llm = llm.with_structured_output(quiz_evaluation)
 
 async def evaluate_quiz(state: State):
+    print("--- EVALUATING QUIZ ---")
     prompt = f"Check the quiz, User selected this options {state['quiz_answers']} for each question"
 
     try:
