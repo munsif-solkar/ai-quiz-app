@@ -11,6 +11,7 @@ export interface Quiz {
   intensity: string
   length: number
   questions: Question[]
+  related_topics: string[]
 }
 
 export interface QuizAnswers{
@@ -30,4 +31,5 @@ export interface QuizEvaluation {
   incorrect_answers_index: number[]
   correct_answers_index: number[]
   improvement_tips: string
+  links: string[]
 }

@@ -21,6 +21,19 @@ export default function QuizEvalutionBlock({ quizEval }: { quizEval: QuizEvaluat
                    <p className="bg-white p-2 rounded-lg">{quizEval.improvement_tips}</p> 
                 </div>
 
+                <div className="space-y-2">
+                    <p className="font-semibold text-[#3B7597] px-1">Resources for improvement</p>
+                    <ul className=" space-y-1">
+                        {quizEval.links.map((link, i) => (
+                            <li key={i} className="bg-white py-1 px-3 rounded-lg">
+                                <a href={link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700">
+                                    {link}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
             </div>
 
         </>

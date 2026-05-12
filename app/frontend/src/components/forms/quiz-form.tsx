@@ -70,6 +70,11 @@ const Intensityoptions = [
       >
         Generate Quiz
       </Button>
+      <div>
+        <p className="text-xs text-gray-500 mt-2">
+          Note: Quiz generation may take up to 30 seconds.
+        </p>
+      </div>
     </form>
   );
 };
