@@ -7,8 +7,8 @@ import type { Quiz } from "../types/quiz"
 import QuizRenderer from "../components/quiz/quiz-renderer"
 import { Loading } from "../components/ui/Loading"
 import { useNavigate } from "react-router-dom";
-
-
+import useRelatedTopicsStore from "../store/relatedTopicsStore"
+import useErrorStore from "../store/errorStore"
 
 
 export default function Dashboard() {
@@ -18,24 +18,30 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null);
 
+  const addRelatedTopics = useRelatedTopicsStore(state => state.setRelatedTopics)
+  const setErrorState = useErrorStore(state => state.setError)
+
   const handleSubmit = async (query: Query ) => {
      
     const queryString = JSON.stringify(query).toLowerCase().trim()
     const recentQueryString = JSON.stringify(recentQuery).toLowerCase().trim()
+   
 
     if (queryString != recentQueryString) {
       try {
-        setError(null)
+        setErrorState(null)
         setLoading(true)
+        setResults(null)
         const data = await generateQuiz(query)
         setResults(data)
+        addRelatedTopics(data.related_topics)
         setRecentQuery(query)
         navigate(`/quiz/${data.quiz_id}`)
 
       } catch (err: any) {
         console.error(err)
         const message = err?.response?.data?.message || err?.message || "Something went wrong";
-        setError(message)
+        setErrorState(message)
 
       } finally {
         setLoading(false)
@@ -50,11 +56,7 @@ export default function Dashboard() {
         <div className="bg-white p-6 rounded-3xl border-2 border-black h-[500px] overflow-y-scroll [&::] relative">
           {loading ? <Loading text='Generating your quiz...'/> : results && <QuizRenderer quiz={results} />}
           { !results && !loading && <QuizIntro/> }
-          {error && (
-            <div className="text-red-500 text-sm mt-2 font-semibold bg-red-100 w-max p-2 rounded-lg border border-red-700">
-              {error}
-            </div>
-          )}
+         
         </div>
       }
     />
