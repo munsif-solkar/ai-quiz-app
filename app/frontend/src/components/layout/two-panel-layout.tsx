@@ -6,10 +6,12 @@ export default function TwoPanelLayout({
   right: React.ReactNode
 }) {
   return (
-    <div className="flex w-full justify-around m-5 gap-2 relative">
+    // make this reposonsive with flex-col on small screens and flex-row on medium and above
+    
+    <div className="flex w-full justify-between gap-2 relative md:flex-row flex-col items-start">
       
-      <div className="w-[400px]">{left}</div>
-      <div className="w-[800px]">{right}</div>
+      <div className="w-full lg:w-[400px]">{left}</div>
+      <div className="w-full lg:w-[900px]">{right}</div>
       
     </div>
   )
