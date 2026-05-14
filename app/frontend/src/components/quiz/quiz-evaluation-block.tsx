@@ -4,7 +4,7 @@ import type { QuizEvaluation } from "../../types/quiz";
 export default function QuizEvalutionBlock({ quizEval }: { quizEval: QuizEvaluation }) {
     return (
         <>
-            <div className="bg-[#ECECEC] px-3 py-3 rounded-lg flex flex-col gap-2  top-0 left-0 w-full">
+            <div className="bg-[#F5F5F5] px-3 py-3 rounded-lg flex flex-col gap-2  top-0 left-0 w-full shadow-md">
                 <div className="evaluation-header">
                     <p className="font-semibold space-x-2">
                         <span className="bg-[#3B7597] py-1 px-3 text-white rounded-full">Quiz Results</span>
@@ -26,7 +26,7 @@ export default function QuizEvalutionBlock({ quizEval }: { quizEval: QuizEvaluat
                     <ul className=" space-y-1">
                         {quizEval.links.map((link, i) => (
                             <li key={i} className="bg-white py-1 px-3 rounded-lg">
-                                <a href={link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700">
+                                <a href={link} target="_blank" rel="noopener noreferrer" className="text-gray-600 font-semibold  rounded-full text-sm hover:text-blue-500 cursor-pointer">
                                     {link}
                                 </a>
                             </li>

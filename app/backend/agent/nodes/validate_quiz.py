@@ -1,6 +1,7 @@
 from agent.state import State
 
 def validate_quiz_node(state: State):
+    print(state)
     quiz = state['quiz_json']
     if quiz and len(quiz.get('questions',[])) >= 5:
         state["quiz_json"]['quiz_id'] = state['quiz_id']

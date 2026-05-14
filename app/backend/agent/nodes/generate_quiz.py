@@ -35,6 +35,7 @@ async def gen_quiz_node(state: State):
         ],timeout=10)
         return {"quiz_json":response.model_dump()}
     except Exception as e:
+        print(e)
         return {"error":"Something went wrong, try again!"}
     
 

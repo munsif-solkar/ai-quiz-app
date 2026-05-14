@@ -29,10 +29,10 @@ const QuizForm = ({ onSubmit }: { onSubmit: (data: Query) => void }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-md mx-auto p-6 bg-white border-0 lg:border-black lg:border-2 rounded-3xl space-y-3"
+      className="max-w-md mx-auto p-5 bg-white border-0 lg:border-black lg:border-2 rounded-3xl space-y-3 h-[500px]"
     >
 
-      <h2 className="text-2xl font-semibold mb-4 text-center text-gray-800">
+      <h2 className="text-2xl font-semibold text-center text-gray-800">
         Generate Quiz
       </h2>
 

@@ -12,21 +12,21 @@ export default function QuizRenderer({ quiz }: { quiz: Quiz }) {
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (formEvent: React.FormEvent) => {
-  
-      try {
-        setLoading(true)
-        const data = await checkScore(formEvent)
-        setResults(data)
-        console.log("weee",data)
-        
 
-      } catch (err) {
-        console.error(err)
-      } finally {
-        setLoading(false)
-      }
+    try {
+      setLoading(true)
+      const data = await checkScore(formEvent)
+      setResults(data)
+      console.log("weee", data)
+
+
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setLoading(false)
+    }
   }
- 
+
 
   return (
     <div className="space-y-3">
@@ -35,10 +35,10 @@ export default function QuizRenderer({ quiz }: { quiz: Quiz }) {
 
         {results && <motion.div
           key="evaluation"
-          initial={{ opacity: 0, y: -10 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.5 }}
         >
           <QuizEvalutionBlock quizEval={results} />
         </motion.div>}
@@ -56,13 +56,31 @@ export default function QuizRenderer({ quiz }: { quiz: Quiz }) {
       </motion.p>}
 
       <form name="quiz-solve" onSubmit={handleSubmit} data-quiz-id={quiz.quiz_id}>
-      <QuizHeader quiz={quiz} solved={results ? true : false}/>
-      
-      {quiz.questions.map((q, i) => (
-        <QuestionCard key={i} question={q} index={i} solved={results ? true : false} incorrect_answers={results?.incorrect_answers_index || []}/>
-      ))}
+        <QuizHeader quiz={quiz} solved={results ? true : false} />
+
+
+        {quiz.questions.map((q, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              type: "spring",
+              stiffness: 120,
+              damping: 14,
+              delay: i * 0.08,
+            }}
+          >
+            <QuestionCard
+              question={q}
+              index={i}
+              solved={results ? true : false}
+              incorrect_answers={results?.incorrect_answers_index || []}
+            />
+          </motion.div>
+        ))}
       </form>
-      
+
 
     </div>
   )
