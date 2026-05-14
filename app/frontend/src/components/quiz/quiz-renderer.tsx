@@ -5,7 +5,7 @@ import { checkScore } from "../../services/quz-score-checker"
 import type { QuizEvaluation } from "../..//types/quiz"
 import { useState } from "react"
 import QuizEvalutionBlock from "./quiz-evaluation-block"
-
+import { motion, AnimatePresence } from "motion/react";
 
 export default function QuizRenderer({ quiz }: { quiz: Quiz }) {
   const [results, setResults] = useState<QuizEvaluation | null>(null)
@@ -18,6 +18,7 @@ export default function QuizRenderer({ quiz }: { quiz: Quiz }) {
         const data = await checkScore(formEvent)
         setResults(data)
         console.log("weee",data)
+        
 
       } catch (err) {
         console.error(err)
@@ -29,8 +30,30 @@ export default function QuizRenderer({ quiz }: { quiz: Quiz }) {
 
   return (
     <div className="space-y-3">
-     
-      {results && <QuizEvalutionBlock quizEval={results}/>}
+
+      <AnimatePresence mode="wait">
+
+        {results && <motion.div
+          key="evaluation"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3 }}
+        >
+          <QuizEvalutionBlock quizEval={results} />
+        </motion.div>}
+
+      </AnimatePresence>
+
+      {loading && <motion.p
+        key="loading"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.3 }}
+      >
+        Evaluating your quiz...
+      </motion.p>}
 
       <form name="quiz-solve" onSubmit={handleSubmit} data-quiz-id={quiz.quiz_id}>
       <QuizHeader quiz={quiz} solved={results ? true : false}/>

@@ -84,7 +84,7 @@ const QuizForm = ({ onSubmit }: { onSubmit: (data: Query) => void }) => {
       </div>
       <div>
         {getRelatedTopics.length > 0 && (
-           <div className="related-topics space-y-2">
+           <div className="related-topics space-y-2 border-t pt-2">
                   <h3 className="text-lg font-semibold">Related Topics</h3>
                   <ul className="flex flex-row flex-wrap gap-x-3 gap-y-1.5">
                     {getRelatedTopics.map((topic, index) => (

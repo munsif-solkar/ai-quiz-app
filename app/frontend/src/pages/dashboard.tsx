@@ -9,14 +9,13 @@ import { Loading } from "../components/ui/Loading"
 import { useNavigate } from "react-router-dom";
 import useRelatedTopicsStore from "../store/relatedTopicsStore"
 import useErrorStore from "../store/errorStore"
-
+import { motion, AnimatePresence } from "motion/react";
 
 export default function Dashboard() {
  const navigate = useNavigate(); 
   const [results, setResults] = useState<Quiz | null>(null)
   const [recentQuery, setRecentQuery] = useState({})
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null);
 
   const addRelatedTopics = useRelatedTopicsStore(state => state.setRelatedTopics)
   const setErrorState = useErrorStore(state => state.setError)
@@ -50,17 +49,60 @@ export default function Dashboard() {
   }
 
   return (
-    <TwoPanelLayout
-      left={<QuizForm onSubmit={handleSubmit} />}
-      right={
-        <div className="bg-white p-6 rounded-3xl border-0 lg:border-2 border-black h-[500px] overflow-y-scroll [&::] ">
-          {loading ? <Loading text='Generating your quiz...'/> : results && <QuizRenderer quiz={results} />}
-          { !results && !loading && <QuizIntro/> }
-         
-        </div>
-      }
-    />
-  )
+  <TwoPanelLayout
+    left={<QuizForm onSubmit={handleSubmit} />}
+    right={
+      <div className="bg-white p-6 rounded-3xl border-0 lg:border-2 border-black h-[500px] overflow-y-scroll ">
+
+        <AnimatePresence mode="wait">
+
+          {loading ? (
+
+            <motion.div
+              key="loading"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Loading text="Generating your quiz..." />
+            </motion.div>
+
+          ) : results ? (
+
+            <motion.div
+              key="results"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 40 }}
+              transition={{
+                type: "spring",
+                stiffness: 120,
+                damping: 14,
+              }}
+            >
+              <QuizRenderer quiz={results} />
+            </motion.div>
+
+          ) : (
+
+            <motion.div
+              key="intro"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <QuizIntro />
+            </motion.div>
+
+          )}
+
+        </AnimatePresence>
+
+      </div>
+    }
+  />
+)
 }
 
 function QuizIntro(){
