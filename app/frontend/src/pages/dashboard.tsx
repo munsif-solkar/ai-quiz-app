@@ -52,7 +52,7 @@ export default function Dashboard() {
   <TwoPanelLayout
     left={<QuizForm onSubmit={handleSubmit} />}
     right={
-      <div className="bg-white p-6 rounded-3xl border-0 lg:border-2 border-black h-[500px] overflow-y-scroll ">
+      <div className="bg-white p-6 rounded-3xl border-0 lg:border-2 border-black h-[550px] overflow-y-scroll ">
 
         <AnimatePresence mode="wait">
 
