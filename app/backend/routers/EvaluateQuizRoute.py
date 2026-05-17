@@ -12,11 +12,16 @@ async def evaluateQuiz(solved_quiz: solved_quiz_query):
         agent_output = await EvaluateQuizAgent(solved_quiz)
        
         quiz_reults = agent_output["quiz_evaluation"]
+        error = agent_output.get("error")
+        if error:
+            raise HTTPException(status_code=400,detail=error)
         if not quiz_reults:
-            return HTTPException(status_code=500,detail="Unable to generate quiz!")
+            raise HTTPException(status_code=500,detail="Unable to evaluate quiz!")
         evaluation_response = quiz_evaluation(**quiz_reults)
-        return JSONResponse(status_code=200,
-                            content=evaluation_response.model_dump())
-    except:
-        HTTPException(status_code=500,detail="Something went wrong")
+        return evaluation_response.model_dump()
+    except HTTPException:
+        raise
+
+    except Exception as e:
+        raise HTTPException(status_code=500,detail=str(e))
 
