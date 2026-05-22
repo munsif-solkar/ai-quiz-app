@@ -58,6 +58,65 @@ The frontend is a single-page application created with **React** and **Vite**.
 -   **Routing**: **React Router** is used to manage navigation, creating a unique URL path (`/quiz/:quiz_id`) for each generated quiz.
 -   **Styling**: **Tailwind CSS** provides a utility-first approach for responsive design.
 
+---
+
+## Docker Setup (Recommended)
+
+You can run the entire project using Docker without manually installing Python or Node.
+
+### Prerequisites
+
+* Docker installed → [https://www.docker.com/](https://www.docker.com/)
+
+---
+
+### 1. Environment Setup
+
+Create a `.env` file in (app/) dir:
+
+```env
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+You can copy from the example:
+
+```bash
+cp .env.example .env
+```
+
+---
+
+### 2. Build and Run with Docker Compose
+
+From the root directory:
+
+```bash
+docker compose up --build
+```
+
+This will:
+
+* Start the backend (FastAPI)
+* Start the frontend (React)
+* Connect both services automatically
+
+---
+
+### 3. Access the App
+
+* Frontend → [http://localhost:5173](http://localhost:5173)
+
+---
+
+### 4. Stop Containers
+
+```bash
+docker compose down
+```
+
+---
+
+
 ## Local Setup and Installation
 
 Follow these steps to run the project on your local machine.
