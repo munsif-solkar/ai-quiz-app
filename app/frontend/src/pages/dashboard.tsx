@@ -11,6 +11,7 @@ import useRelatedTopicsStore from "../store/relatedTopicsStore"
 import useErrorStore from "../store/errorStore"
 import { motion, AnimatePresence } from "motion/react";
 import { Sparkles, BrainCircuit, Zap } from "lucide-react";
+import { div } from "motion/react-client"
 
 export default function Dashboard() {
  const navigate = useNavigate(); 
@@ -53,7 +54,16 @@ export default function Dashboard() {
   <TwoPanelLayout
     left={<QuizForm onSubmit={handleSubmit} />}
     right={
-      <div className="bg-white p-6 rounded-3xl border-0 lg:border-2 border-black h-[550px] overflow-y-scroll ">
+      <div className="overflow-hidden rounded-3xl border-0 lg:border-2 border-black">
+      <div className="
+  bg-white p-6 
+  h-[550px] overflow-y-auto
+
+  scrollbar-thin
+    scrollbar-thumb-zinc-300
+    scrollbar-track-transparent
+    hover:scrollbar-thumb-zinc-400
+">
 
         <AnimatePresence mode="wait">
 
@@ -100,6 +110,7 @@ export default function Dashboard() {
 
         </AnimatePresence>
 
+      </div>
       </div>
     }
   />

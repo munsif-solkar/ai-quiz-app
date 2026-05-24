@@ -32,7 +32,7 @@ const QuizForm = ({ onSubmit }: { onSubmit: (data: Query) => void }) => {
       className="max-w-md mx-auto p-5 bg-white border-0 lg:border-black lg:border-2 rounded-3xl space-y-3"
     >
 
-      <h2 className="text-2xl font-semibold text-center text-gray-800">
+      <h2 className="text-2xl font-semibold text-center text-zinc-900">
         Generate Quiz
       </h2>
 
@@ -73,7 +73,7 @@ const QuizForm = ({ onSubmit }: { onSubmit: (data: Query) => void }) => {
       <Button
         type="submit"
         variant="secondary"
-        className="w-full"
+        className="w-full "
       >
         Generate Quiz
       </Button>
