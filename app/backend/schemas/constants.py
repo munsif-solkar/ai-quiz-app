@@ -6,7 +6,7 @@ from pydantic import Field
 
 IntensityType = Literal['easy','medium','hard']
 
-QuizLengthConstraints = Field(ge=5,le=20)
+QuizLengthConstraints = Field(ge=5,le=15,description="Number of questions in the quiz should be between 5 and 15")
 
 QuizTopicConstraints = Field(max_length=150,min_length=10)
 
