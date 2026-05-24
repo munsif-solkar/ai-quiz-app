@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import useRelatedTopicsStore from "../store/relatedTopicsStore"
 import useErrorStore from "../store/errorStore"
 import { motion, AnimatePresence } from "motion/react";
+import { Sparkles, BrainCircuit, Zap } from "lucide-react";
 
 export default function Dashboard() {
  const navigate = useNavigate(); 
@@ -105,13 +106,82 @@ export default function Dashboard() {
 )
 }
 
-function QuizIntro(){
+function QuizIntro() {
   return (
-  <>
-    <div className="flex items-center justify-center">
-<h1 className="font-bold uppercase leading-normal text-3xl text-gray-500">Generate quiz over any topic to test your skills</h1>
-    </div>
-  </>
-  )
-}
+    <div className="rounded-3xl  bg-white p-5 ">
+      <div className="flex flex-col gap-8">
+        
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="max-w-3xl text-5xl font-black leading-tight tracking-tight text-zinc-900">
+            Create interactive quizzes on any topic in seconds.
+          </h1>
+        </motion.div>
 
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="max-w-2xl text-lg leading-relaxed text-zinc-500"
+        >
+          Generate AI-powered quizzes with customizable difficulty,
+          instant scoring, and smart feedback — all in a clean and
+          seamless experience.
+        </motion.p>
+
+        {/* Features */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="grid gap-4 sm:grid-cols-3"
+        >
+          <div className="rounded-2xl border border-zinc-200 p-5">
+            <BrainCircuit size={20} className="text-zinc-700" />
+            <h3 className="mt-3 font-semibold text-zinc-900">
+              AI Generated
+            </h3>
+            <p className="mt-1 text-sm text-zinc-500">
+              Dynamic questions generated instantly from your topic.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-zinc-200 p-5">
+            <Zap size={20} className="text-zinc-700" />
+            <h3 className="mt-3 font-semibold text-zinc-900">
+              Instant Results
+            </h3>
+            <p className="mt-1 text-sm text-zinc-500">
+              Get scores and detailed feedback immediately.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-zinc-200 p-5">
+            <Sparkles size={20} className="text-zinc-700" />
+            <h3 className="mt-3 font-semibold text-zinc-900">
+              Fully Customizable
+            </h3>
+            <p className="mt-1 text-sm text-zinc-500">
+              Adjust quiz difficulty and question count easily.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* CTA */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="text-sm text-zinc-400"
+        >
+          Fill the form and generate your first quiz.
+        </motion.p>
+      </div>
+    </div>
+  );
+}
