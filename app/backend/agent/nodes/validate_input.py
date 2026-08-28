@@ -21,6 +21,6 @@ async def validate_input_node(state: State):
         return {"error":res['error']}
         
     except Exception as e:
-
+        print(e)
         return {"error":"Something went wrong, try again!"}
         
