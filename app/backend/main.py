@@ -27,7 +27,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-    allow_origin_regex=r'http://.*:5173'
+    allow_origin_regex=r"https://.*\.onrender\.com"
 )
 
 @app.exception_handler(RequestValidationError)
