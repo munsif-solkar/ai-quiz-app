@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     allowedHosts: [
-      'https://aiquiz-qn65.onrender.com'
+      'aiquiz-qn65.onrender.com'
     ]
   }
 })
