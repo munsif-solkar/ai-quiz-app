@@ -5,7 +5,7 @@ from schemas.quiz_eval_schema import quiz_evaluation
 from agent.state import State
 from core.config import GROQ_API_KEY
 
-llm = ChatGroq(model="llama-3.3-70b-versatile")
+llm = ChatGroq(model="qwen/qwen3.8-27b")
 
 structured_llm = llm.with_structured_output(quiz_evaluation)
 
