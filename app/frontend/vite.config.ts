@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     allowedHosts: [
-      'ai-quiz-app-frontend-gpqa.onrender.com'
+      'https://aiquiz-qn65.onrender.com'
     ]
   }
 })
